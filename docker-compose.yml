@@ -1,0 +1,88 @@
+services:
+ mongo-hotels:
+  image: mongo:latest
+  ports:
+    - 27017:27017
+  volumes:
+    - mongodb_hotel_data:/data/db
+    
+ mysql-booking:
+  image: mysql:latest
+  ports:
+    - 3306:3306
+  volumes:
+    - mysql_booking_data:/var/lib/mysql
+  environment:
+   MYSQL_ROOT_PASSWORD: abc123
+    
+ mysql-customer:
+  image: mysql:latest
+  ports:
+    - 3307:3306
+  volumes:
+    - mysql_customer_data:/var/lib/mysql
+  environment:
+   MYSQL_ROOT_PASSWORD: abc123
+    
+ hotel-service:
+  depends_on:
+    - mongo-hotels
+  image: thomasmalecki/hotel-service
+  ports:
+    - 8080:8080
+  links:
+    - mongo-hotels
+  environment:
+   MONGODB_PORT: 27017
+   MONGODB_HOST: mongo-hotels
+   
+ customer-service:
+  depends_on:
+    - mysql-customer
+  image: thomasmalecki/customer-service
+  ports:
+    - 8082:8082
+  links:
+    - mysql-customer
+  environment:
+   MYSQL_DB_USERNAME: root
+   MYSQL_DB_PASSWORD: abc123
+   MYSQL_DB_HOST: mysql-customer
+   MYSQL_DB_PORT: 3306
+
+ booking-service:
+  depends_on:
+    - hotel-service
+    - customer-service
+  image: thomas/booking-service
+  ports:
+    - 8081:8081
+  links:
+    - hotel-service
+    - customer-service
+  environment:
+   PRODUCT_SERVICE_BASEURL: hotel-service:8080
+   INVENTORY_INFO_SERVICE_BASEURL: customer-service:8082
+   MYSQL_DB_USERNAME: root
+   MYSQL_DB_PASSWORD: abc123
+   MYSQL_DB_HOST: mysql-booking
+   MYSQL_DB_PORT: 3306
+
+ api-gateway:
+   depends_on:
+     - hotel-service
+     - booking-service
+   image: thomasmalecki/ede-api-gateway
+   ports:
+     - 8083:8083
+   links:
+     - hotel-service
+     - booking-service
+   environment:
+     PRODUCT_SERVICE_BASEURL: hotel-service:8080
+     ORDER_SERVICE_BASEURL: booking-service:8081
+
+volumes:
+ mongodb_product_data:
+ mysql_inventory_data:
+ mysql_order_data:
