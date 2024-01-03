@@ -18,7 +18,7 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String BookingNbr;
+    private String bookingNbr;
     private Long hotelId;
     private Long customerId;
     private int amountOfNights;
