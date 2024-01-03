@@ -72,6 +72,7 @@ services:
    depends_on:
      - hotel-service
      - booking-service
+     - customer-service
    image: haye1/ede-api-gateway
    ports:
      - 8083:8083
@@ -81,6 +82,7 @@ services:
    environment:
      HOTEL_SERVICE_BASEURL: hotel-service:8080
      BOOKING_SERVICE_BASEURL: booking-service:8081
+     CUSTOMER_SERVICE_BASEURL: customer-service:8082
 
 volumes:
  mongodb_hotel_data:
