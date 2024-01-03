@@ -3,9 +3,9 @@ name: Build and deliver containers
 on: push
 
 jobs:
-  productservice:
+  hotelservice:
     runs-on: ubuntu-latest
-    name: Java 17 build, test, deliver product-service container
+    name: Java 17 build, test, deliver hotel-service container
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -25,13 +25,13 @@ jobs:
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Docker Build
-        run: docker build -t ${{ secrets.DOCKER_USER }}/product-service:latest ./product-service
+        run: docker build -t ${{ secrets.DOCKER_USER }}/hotel-service:latest ./hotel-service
 
       - name: Upload container to Docker Hub with Push
-        run: docker push ${{ secrets.DOCKER_USER }}/product-service:latest
-  inventoryservice:
+        run: docker push ${{ secrets.DOCKER_USER }}/hotel-service:latest
+  customerservice:
     runs-on: ubuntu-latest
-    name: Java 17 build, test, deliver inventory-service container
+    name: Java 17 build, test, deliver customer-service container
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -51,13 +51,13 @@ jobs:
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Docker Build
-        run: docker build -t ${{ secrets.DOCKER_USER }}/inventory-service:latest ./inventory-service
+        run: docker build -t ${{ secrets.DOCKER_USER }}/customer-service:latest ./customer-service
 
       - name: Upload container to Docker Hub with Push
-        run: docker push ${{ secrets.DOCKER_USER }}/inventory-service:latest
-  orderservice:
+        run: docker push ${{ secrets.DOCKER_USER }}/customer-service:latest
+  bookingservice:
     runs-on: ubuntu-latest
-    name: Java 17 build, test, deliver order-service container
+    name: Java 17 build, test, deliver booking-service container
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -77,10 +77,10 @@ jobs:
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Docker Build
-        run: docker build -t ${{ secrets.DOCKER_USER }}/order-service:latest ./order-service
+        run: docker build -t ${{ secrets.DOCKER_USER }}/booking-service:latest ./booking-service
 
       - name: Upload container to Docker Hub with Push
-        run: docker push ${{ secrets.DOCKER_USER }}/order-service:latest
+        run: docker push ${{ secrets.DOCKER_USER }}/booking-service:latest
   apigateway:
     runs-on: ubuntu-latest
     name: Java 17 build, test, deliver ede-api-gateway container
