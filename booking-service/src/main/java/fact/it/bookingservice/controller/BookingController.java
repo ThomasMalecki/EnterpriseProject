@@ -22,7 +22,12 @@ public class BookingController {
         boolean result = bookingService.placeBooking(bookingRequest);
         return (result ? "booking successfully" : "Booking failed");
     }
-
+    @DeleteMapping("/{bookingId}")
+    @ResponseStatus(HttpStatus.OK)
+    public String deleteBooking(@PathVariable Long bookingId) {
+        boolean result = bookingService.deleteBooking(bookingId);
+        return (result ? "Booking deleted successfully" : "Booking deletion failed");
+    }
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<BookingResponse> getAllBookings() {

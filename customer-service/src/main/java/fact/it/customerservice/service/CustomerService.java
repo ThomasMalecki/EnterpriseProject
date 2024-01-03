@@ -1,5 +1,6 @@
 package fact.it.customerservice.service;
 
+import fact.it.customerservice.dto.CustomerRequest;
 import fact.it.customerservice.dto.CustomerResponse;
 import fact.it.customerservice.model.Customer;
 import fact.it.customerservice.repository.CustomerRepository;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -34,5 +37,43 @@ public class CustomerService {
             customerRepository.save(customer);
             customerRepository.save(customer1);
         }
+    }
+
+    public boolean updateCustomer(Long customerId, CustomerRequest customerRequest) {
+        Optional<Customer> optionalCustomer = customerRepository.findById(customerId);
+
+        if (optionalCustomer.isPresent()) {
+            Customer existingCustomer = optionalCustomer.get();
+            existingCustomer.setFirstName(customerRequest.getFirstName());
+            existingCustomer.setLastName(customerRequest.getLastName());
+            existingCustomer.setEmail(customerRequest.getEmail());
+            existingCustomer.setPhone(customerRequest.getPhone());
+
+            customerRepository.save(existingCustomer);
+            return true;
+        } else {
+            return false; // Customer with the specified ID not found
+        }
+    }
+
+    public boolean deleteCustomer(Long customerId) {
+        try {
+            customerRepository.deleteById(customerId);
+            return true;
+        } catch (Exception e) {
+            return false; // Error occurred during deletion
+        }
+    }
+    public List<CustomerResponse> getAllCustomers() {
+        List<Customer> bookings = customerRepository.findAll();
+
+        return bookings.stream()
+                .map(customer -> new CustomerResponse(
+                        customer.getFirstName(),
+                        customer.getLastName(),
+                        customer.getEmail(),
+                        customer.getPhone()
+                ))
+                .collect(Collectors.toList());
     }
 }

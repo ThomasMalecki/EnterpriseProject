@@ -1,5 +1,6 @@
 package fact.it.customerservice.controller;
 
+import fact.it.customerservice.dto.CustomerRequest;
 import fact.it.customerservice.dto.CustomerResponse;
 import fact.it.customerservice.service.CustomerService;
 import lombok.RequiredArgsConstructor;
@@ -14,11 +15,26 @@ import java.util.List;
 public class CustomerController {
 
     private final CustomerService customerService;
+    @GetMapping("/all")
+    @ResponseStatus(HttpStatus.OK)
+    public List<CustomerResponse> getAllBookings() {
+        return customerService.getAllCustomers();
+    }
 
-    // http://localhost:8082/api/customer?skuCode=tube6in&skuCode=beam10ft
-    //@GetMapping
-    //@ResponseStatus(HttpStatus.OK)
-    //public List<CustomerResponse> isInStock (@RequestParam List<String> skuCode) {
-        //return customerService.isInStock(skuCode);
-    //}
+    @PutMapping("/{customerId}")
+    @ResponseStatus(HttpStatus.OK)
+    public String updateCustomer(
+            @PathVariable Long customerId,
+            @RequestBody CustomerRequest customerRequest
+    ) {
+        boolean result = customerService.updateCustomer(customerId, customerRequest);
+        return result ? "Customer updated successfully" : "Customer update failed";
+    }
+
+    @DeleteMapping("/{customerId}")
+    @ResponseStatus(HttpStatus.OK)
+    public String deleteCustomer(@PathVariable Long customerId) {
+        boolean result = customerService.deleteCustomer(customerId);
+        return result ? "Customer deleted successfully" : "Customer deletion failed";
+    }
 }

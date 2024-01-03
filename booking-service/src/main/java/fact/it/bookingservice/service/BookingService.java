@@ -10,6 +10,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -39,6 +40,22 @@ public class BookingService {
             return false;
         }
 
+    }
+
+    public boolean deleteBooking(Long bookingId) {
+        try {
+            Optional<Booking> optionalBooking = bookingRepository.findById(bookingId);
+
+            if (optionalBooking.isPresent()) {
+                Booking booking = optionalBooking.get();
+                bookingRepository.delete(booking);
+                return true;
+            } else {
+                return false; // Booking with the specified booking number not found
+            }
+        } catch (Exception e) {
+            return false; // Error occurred during deletion
+        }
     }
 
     public List<BookingResponse> getAllBookings() {
