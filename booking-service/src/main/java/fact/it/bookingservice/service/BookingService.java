@@ -44,15 +44,9 @@ public class BookingService {
 
     public boolean deleteBookingByNumber(String bookingNbr) {
         try {
-            Optional<Booking> optionalBooking = bookingRepository.findByBookingNbr(bookingNbr);
-
-            if (optionalBooking.isPresent()) {
-                Booking booking = optionalBooking.get();
-                bookingRepository.delete(booking);
+            Booking booking = bookingRepository.findByBookingNbr(bookingNbr);
+            bookingRepository.delete(booking);
                 return true;
-            } else {
-                return false; // Booking with the specified booking number not found
-            }
         } catch (Exception e) {
             return false; // Error occurred during deletion
         }
