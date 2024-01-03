@@ -61,8 +61,8 @@ services:
     - hotel-service
     - customer-service
   environment:
-   PRODUCT_SERVICE_BASEURL: hotel-service:8080
-   INVENTORY_INFO_SERVICE_BASEURL: customer-service:8082
+   HOTEL_SERVICE_BASEURL: hotel-service:8080
+   CUSTOMER_INFO_SERVICE_BASEURL: customer-service:8082
    MYSQL_DB_USERNAME: root
    MYSQL_DB_PASSWORD: abc123
    MYSQL_DB_HOST: mysql-booking
@@ -79,10 +79,10 @@ services:
      - hotel-service
      - booking-service
    environment:
-     PRODUCT_SERVICE_BASEURL: hotel-service:8080
-     ORDER_SERVICE_BASEURL: booking-service:8081
+     HOTEL_SERVICE_BASEURL: hotel-service:8080
+     BOOKING_SERVICE_BASEURL: booking-service:8081
 
 volumes:
- mongodb_product_data:
- mysql_inventory_data:
- mysql_order_data:
+ mongodb_hotel_data:
+ mysql_customer_data:
+ mysql_booking_data:
