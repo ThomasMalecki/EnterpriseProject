@@ -9,17 +9,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/inventory")
+@RequestMapping("/api/customer")
 @RequiredArgsConstructor
 public class CustomerController {
 
     private final CustomerService customerService;
 
     // http://localhost:8082/api/customer?skuCode=tube6in&skuCode=beam10ft
-    @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public List<CustomerResponse> isInStock
-    (@RequestParam List<String> skuCode) {
-        return customerService.isInStock(skuCode);
-    }
+    //@GetMapping
+    //@ResponseStatus(HttpStatus.OK)
+    //public List<CustomerResponse> isInStock (@RequestParam List<String> skuCode) {
+        //return customerService.isInStock(skuCode);
+    //}
 }
