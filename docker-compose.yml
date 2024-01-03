@@ -27,7 +27,7 @@ services:
  hotel-service:
   depends_on:
     - mongo-hotels
-  image: thomasmalecki/hotel-service
+  image: haye1/hotel-service
   ports:
     - 8080:8080
   links:
@@ -39,7 +39,7 @@ services:
  customer-service:
   depends_on:
     - mysql-customer
-  image: thomasmalecki/customer-service
+  image: haye1/customer-service
   ports:
     - 8082:8082
   links:
@@ -54,7 +54,7 @@ services:
   depends_on:
     - hotel-service
     - customer-service
-  image: thomas/booking-service
+  image: haye1/booking-service
   ports:
     - 8081:8081
   links:
@@ -72,7 +72,7 @@ services:
    depends_on:
      - hotel-service
      - booking-service
-   image: thomasmalecki/ede-api-gateway
+   image: haye1/ede-api-gateway
    ports:
      - 8083:8083
    links:
