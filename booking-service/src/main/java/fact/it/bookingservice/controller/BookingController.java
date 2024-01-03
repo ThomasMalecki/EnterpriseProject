@@ -23,7 +23,7 @@ public class BookingController {
         return (result ? "booking successfully" : "Booking failed");
     }
 
-    @GetMapping
+    @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<BookingResponse> getAllBookings() {
         return bookingService.getAllBookings();

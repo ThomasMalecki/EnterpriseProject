@@ -28,7 +28,7 @@ public class BookingService {
 
     public boolean placeBooking(BookingRequest bookingRequest) {
         Booking booking = new Booking();
-        booking.setBookingNbr("2");
+        booking.setBookingNbr(UUID.randomUUID().toString());
         booking.setCustomerId(bookingRequest.getCustomerId());
         booking.setHotelId(bookingRequest.getHotelId());
         booking.setAmountOfNights(bookingRequest.getAmountOfNights());
