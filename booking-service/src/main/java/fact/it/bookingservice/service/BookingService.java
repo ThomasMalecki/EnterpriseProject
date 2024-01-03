@@ -27,8 +27,6 @@ public class BookingService {
     private String customerServiceBaseUrl;
 
     public boolean placeBooking(BookingRequest bookingRequest) {
-
-
         Booking booking = new Booking();
         booking.setBookingNbr("2");
         booking.setCustomerId(bookingRequest.getCustomerId());
