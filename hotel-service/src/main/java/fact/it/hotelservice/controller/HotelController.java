@@ -22,14 +22,12 @@ public class HotelController {
             (@RequestBody HotelRequest hotelRequest) {
         hotelService.createHotel(hotelRequest);
     }
-
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<HotelResponse> getAllHotelsByLocation
             (@RequestParam List<String> location) {
         return hotelService.getAllHotelsByLocation(location);
     }
-
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<HotelResponse> getAllHotels() {
