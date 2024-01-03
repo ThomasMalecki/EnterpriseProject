@@ -65,9 +65,9 @@ public class CustomerService {
         }
     }
     public List<CustomerResponse> getAllCustomers() {
-        List<Customer> bookings = customerRepository.findAll();
+        List<Customer> customers = customerRepository.findAll();
 
-        return bookings.stream()
+        return customers.stream()
                 .map(customer -> new CustomerResponse(
                         customer.getFirstName(),
                         customer.getLastName(),

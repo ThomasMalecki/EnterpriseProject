@@ -17,7 +17,7 @@ public class CustomerController {
     private final CustomerService customerService;
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
-    public List<CustomerResponse> getAllBookings() {
+    public List<CustomerResponse> getAllCustomers() {
         return customerService.getAllCustomers();
     }
 
