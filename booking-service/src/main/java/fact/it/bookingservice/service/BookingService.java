@@ -44,7 +44,7 @@ public class BookingService {
 
     public boolean deleteBookingByNumber(String bookingNbr) {
         try {
-            Optional<Booking> optionalBooking = bookingRepository.findByBookingNumber(bookingNbr);
+            Optional<Booking> optionalBooking = bookingRepository.findByBookingNbr(bookingNbr);
 
             if (optionalBooking.isPresent()) {
                 Booking booking = optionalBooking.get();
