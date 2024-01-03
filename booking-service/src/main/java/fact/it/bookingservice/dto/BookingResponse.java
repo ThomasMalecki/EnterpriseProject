@@ -10,6 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookingResponse {
+    private Long id;
     private String bookingNbr;
     private Long hotelId;
     private Long customerId;
