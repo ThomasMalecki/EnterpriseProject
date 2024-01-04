@@ -72,6 +72,6 @@ public class BookingServiceApplicationTests {
 		//ASSERT
 		assertEquals(2, result.size());
 
-		verify(bookingRepository, times(2)).findAll();
+		verify(bookingRepository, times(1)).findAll();
 	}
 }

@@ -1,7 +1,5 @@
 package fact.it.hotelservice;
 
-import fact.it.bookingservice.dto.BookingRequest;
-import fact.it.bookingservice.model.Booking;
 import fact.it.hotelservice.dto.HotelRequest;
 import fact.it.hotelservice.dto.HotelResponse;
 import fact.it.hotelservice.model.Hotel;
@@ -12,13 +10,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;

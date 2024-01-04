@@ -10,7 +10,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
 import java.util.List;
@@ -68,7 +67,7 @@ class CustomerServiceApplicationTests {
 		Customer customer2 = new Customer(2L,"bob2", "marly","bob@malry.be", "0545842446");
 		Customer customer3 = new Customer(3L,"bob3", "marly","bob@malry.be", "0545842446");
 
-		List<Customer> customers = Arrays.asList();
+		List<Customer> customers = Arrays.asList(customer1,customer2,customer3);
 		when(customerRepository.findAll()).thenReturn(customers);
 
 		// Act
