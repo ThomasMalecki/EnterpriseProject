@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,9 +29,15 @@ public class BookingService {
     private String customerServiceBaseUrl;
 
     public boolean placeBooking(BookingRequest bookingRequest) {
+        if(customerExistsById(bookingRequest.getCustomerId())){
+            return false;
+        }
+
         Booking booking = new Booking();
         booking.setBookingNbr(UUID.randomUUID().toString());
+
         booking.setCustomerId(bookingRequest.getCustomerId());
+
         booking.setHotelId(bookingRequest.getHotelId());
         booking.setAmountOfNights(bookingRequest.getAmountOfNights());
         try {
@@ -41,7 +48,14 @@ public class BookingService {
         }
 
     }
-
+    public boolean customerExistsById(Long customerId) {
+        Boolean exists = webClient.get()
+                .uri("http://" + customerServiceBaseUrl + "/api/customer/by-id/{customerId}", customerId)
+                .retrieve()
+                .bodyToMono(Boolean.class)
+                .block();
+        return exists != null && exists;
+    }
     public boolean deleteBookingByNumber(String bookingNbr) {
         try {
             Booking booking = bookingRepository.findByBookingNbr(bookingNbr);

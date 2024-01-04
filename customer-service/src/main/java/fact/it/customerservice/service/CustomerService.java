@@ -35,7 +35,7 @@ public class CustomerService {
             customer1.setPhone("+32 489 54 86");
 
             Customer customer2 = new Customer();
-            customer2.setFirstName("Bo");
+            customer2.setFirstName("Bert");
             customer2.setLastName("Dessent");
             customer2.setEmail("bo.dessent@mail.be");
             customer2.setPhone("+32 489 54 86");
@@ -50,6 +50,7 @@ public class CustomerService {
         Optional<Customer> optionalCustomer = customerRepository.findById(customerId);
 
         if (optionalCustomer.isPresent()) {
+
             Customer existingCustomer = optionalCustomer.get();
             existingCustomer.setFirstName(customerRequest.getFirstName());
             existingCustomer.setLastName(customerRequest.getLastName());
@@ -73,5 +74,9 @@ public class CustomerService {
                         customer.getPhone()
                 ))
                 .collect(Collectors.toList());
+    }
+
+    public Optional<Customer> findById(Long customerId) {
+        return customerRepository.findById(customerId);
     }
 }

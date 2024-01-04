@@ -30,4 +30,9 @@ public class CustomerController {
         boolean result = customerService.updateCustomer(customerId, customerRequest);
         return result ? "Customer updated successfully" : "Customer update failed";
     }
+
+    @GetMapping("/by-id/{customerId}")
+    public Boolean checkCustomerExistsById(@PathVariable Long customerId) {
+        return customerService.findById(customerId).isPresent();
+    }
 }
