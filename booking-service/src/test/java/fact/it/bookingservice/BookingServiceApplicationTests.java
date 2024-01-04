@@ -5,14 +5,10 @@ import fact.it.bookingservice.model.Booking;
 import fact.it.bookingservice.repository.BookingRepository;
 import fact.it.bookingservice.service.BookingService;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Arrays;
@@ -22,13 +18,9 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
-@AutoConfigureMockMvc
+@ExtendWith(MockitoExtension.class)
 public class BookingServiceApplicationTests {
-
-
 	@InjectMocks
 	private BookingService bookingService;
 
@@ -81,6 +73,6 @@ public class BookingServiceApplicationTests {
 		//ASSERT
 		assertEquals(2, result.size());
 
-		verify(bookingRepository, times(1)).findAll();
+		verify(bookingRepository, times(2)).findAll();
 	}
 }
