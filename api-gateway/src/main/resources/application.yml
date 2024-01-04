@@ -49,7 +49,7 @@ spring:
         - id: booking-service-delete
           uri: http://${BOOKING_SERVICE_BASEURL:localhost:8081}
           predicates:
-            - Path=/bookings/{bookingNbr}
+            - Path=/bookings/**
             - Method=DELETE
           filters:
             - SetPath=/api/booking
@@ -70,7 +70,14 @@ spring:
         - id: customer-service-update
           uri: http://${CUSTOMER_SERVICE_BASEURL:localhost:8082}
           predicates:
-            - Path=/customers/{customerId}
+            - Path=/customers/**
             - Method=PUT
+          filters:
+            - SetPath=/api/customer
+        - id: customer-service-delete
+          uri: http://${CUSTOMER_SERVICE_BASEURL:localhost:8082}
+          predicates:
+            - Path=/customers/**
+            - Method=DELETE
           filters:
             - SetPath=/api/customer

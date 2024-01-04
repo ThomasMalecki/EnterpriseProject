@@ -21,10 +21,10 @@ public class BookingService {
     private final BookingRepository bookingRepository;
     private final WebClient webClient;
 
-    @Value("${productservice.baseurl}")
+    @Value("${hotelservice.baseurl}")
     private String hotelServiceBaseUrl;
 
-    @Value("${inventoryservice.baseurl}")
+    @Value("${customerservice.baseurl}")
     private String customerServiceBaseUrl;
 
     public boolean placeBooking(BookingRequest bookingRequest) {

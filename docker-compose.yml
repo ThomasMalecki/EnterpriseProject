@@ -62,7 +62,7 @@ services:
     - customer-service
   environment:
    HOTEL_SERVICE_BASEURL: hotel-service:8080
-   CUSTOMER_INFO_SERVICE_BASEURL: customer-service:8082
+   CUSTOMER_SERVICE_BASEURL: customer-service:8082
    MYSQL_DB_USERNAME: root
    MYSQL_DB_PASSWORD: abc123
    MYSQL_DB_HOST: mysql-booking
