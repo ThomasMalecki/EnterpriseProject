@@ -5,6 +5,8 @@ import fact.it.bookingservice.model.Booking;
 import fact.it.bookingservice.repository.BookingRepository;
 import fact.it.bookingservice.service.BookingService;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,6 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -25,16 +28,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class BookingServiceApplicationTests {
 
-	@Autowired
-	private MockMvc mockMvc;
 
-	@Autowired
+	@InjectMocks
 	private BookingService bookingService;
 
-	@MockBean
+	@Mock
 	private WebClient webClient; // Mock external dependencies
 
-	@MockBean
+	@Mock
 	private BookingRepository bookingRepository; // Mock database repository
 
 	@Test
@@ -52,8 +53,10 @@ public class BookingServiceApplicationTests {
 
 	@Test
 	public void deleteBookingByNumber_ExistingBooking_ReturnsTrue() throws Exception {
+
 		String bookingNbr = UUID.randomUUID().toString();
-		Booking booking = new Booking();
+		Booking booking = new Booking(1L, bookingNbr, 1L,1L, 10);
+
 		when(bookingRepository.findByBookingNbr(bookingNbr)).thenReturn(booking);
 
 		boolean result = bookingService.deleteBookingByNumber(bookingNbr);
@@ -65,16 +68,19 @@ public class BookingServiceApplicationTests {
 
 	@Test
 	public void getAllBookings_ReturnsListOfBookings() throws Exception {
-		List<Booking> bookings = Arrays.asList(
-				new Booking(),
-				new Booking()
-		);
-		when(bookingRepository.findAll()).thenReturn(bookings);
+		//ARRANGE
+		Booking booking1 = new Booking(1L, UUID.randomUUID().toString(), 1L,1L, 10);
+		Booking booking2 = new Booking(1L, UUID.randomUUID().toString(), 1L,1L, 10);
 
+		when(bookingRepository.findAll()).thenReturn(Arrays.asList(booking1, booking2));
 		List<BookingResponse> response = bookingService.getAllBookings();
 
-		assert response.size() == 2; // Check that the response has the expected size
+		//ACT
+		List<BookingResponse> result = bookingService.getAllBookings();
 
-		// Add additional assertions based on your business logic
+		//ASSERT
+		assertEquals(2, result.size());
+
+		verify(bookingRepository, times(1)).findAll();
 	}
 }
