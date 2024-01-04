@@ -29,10 +29,10 @@ public class CustomerService {
             customer.setPhone("+32 489 54 86");
 
             Customer customer1 = new Customer();
-            customer.setFirstName("Bo");
-            customer.setLastName("Dessent");
-            customer.setEmail("bo.dessent@mail.be");
-            customer.setPhone("+32 489 54 86");
+            customer1.setFirstName("Bo");
+            customer1.setLastName("Dessent");
+            customer1.setEmail("bo.dessent@mail.be");
+            customer1.setPhone("+32 489 54 86");
 
             customerRepository.save(customer);
             customerRepository.save(customer1);

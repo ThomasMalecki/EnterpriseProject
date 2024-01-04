@@ -79,6 +79,7 @@ services:
    links:
      - hotel-service
      - booking-service
+     - customer-service
    environment:
      HOTEL_SERVICE_BASEURL: hotel-service:8080
      BOOKING_SERVICE_BASEURL: booking-service:8081
