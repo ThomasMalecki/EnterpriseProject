@@ -34,8 +34,15 @@ public class CustomerService {
             customer1.setEmail("bo.dessent@mail.be");
             customer1.setPhone("+32 489 54 86");
 
+            Customer customer2 = new Customer();
+            customer2.setFirstName("Bo");
+            customer2.setLastName("Dessent");
+            customer2.setEmail("bo.dessent@mail.be");
+            customer2.setPhone("+32 489 54 86");
+
             customerRepository.save(customer);
             customerRepository.save(customer1);
+            customerRepository.save(customer2);
         }
     }
 
@@ -53,15 +60,6 @@ public class CustomerService {
             return true;
         } else {
             return false; // Customer with the specified ID not found
-        }
-    }
-
-    public boolean deleteCustomer(Long customerId) {
-        try {
-            customerRepository.deleteById(customerId);
-            return true;
-        } catch (Exception e) {
-            return false; // Error occurred during deletion
         }
     }
     public List<CustomerResponse> getAllCustomers() {

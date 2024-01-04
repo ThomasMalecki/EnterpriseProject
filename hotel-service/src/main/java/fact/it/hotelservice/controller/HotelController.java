@@ -18,15 +18,10 @@ public class HotelController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public void createHotel
+    public String createHotel
             (@RequestBody HotelRequest hotelRequest) {
-        hotelService.createHotel(hotelRequest);
-    }
-    @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public List<HotelResponse> getAllHotelsByLocation
-            (@RequestParam List<String> location) {
-        return hotelService.getAllHotelsByLocation(location);
+        boolean result = hotelService.createHotel(hotelRequest);
+        return (result ? "hotel creation successfully" : "hotel creation failed");
     }
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)

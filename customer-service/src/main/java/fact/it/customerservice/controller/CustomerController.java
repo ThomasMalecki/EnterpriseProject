@@ -30,11 +30,4 @@ public class CustomerController {
         boolean result = customerService.updateCustomer(customerId, customerRequest);
         return result ? "Customer updated successfully" : "Customer update failed";
     }
-
-    @DeleteMapping("/{customerId}")
-    @ResponseStatus(HttpStatus.OK)
-    public String deleteCustomer(@PathVariable Long customerId) {
-        boolean result = customerService.deleteCustomer(customerId);
-        return result ? "Customer deleted successfully" : "Customer deletion failed";
-    }
 }

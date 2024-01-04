@@ -65,7 +65,6 @@ public class BookingServiceApplicationTests {
 		Booking booking2 = new Booking(1L, UUID.randomUUID().toString(), 1L,1L, 10);
 
 		when(bookingRepository.findAll()).thenReturn(Arrays.asList(booking1, booking2));
-		List<BookingResponse> response = bookingService.getAllBookings();
 
 		//ACT
 		List<BookingResponse> result = bookingService.getAllBookings();

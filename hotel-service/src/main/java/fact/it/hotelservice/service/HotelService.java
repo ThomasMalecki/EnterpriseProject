@@ -38,15 +38,20 @@ public class HotelService {
         }
     }
 
-    public void createHotel(HotelRequest hotelRequest){
+    public boolean createHotel(HotelRequest hotelRequest){
         Hotel hotel = Hotel.builder()
                 .name(hotelRequest.getName())
                 .location(hotelRequest.getLocation())
                 .description(hotelRequest.getDescription())
                 .pricePerNight(hotelRequest.getPricePerNight())
                 .build();
+        try {
+            hotelRepository.save(hotel);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
 
-        hotelRepository.save(hotel);
     }
 
     public List<HotelResponse> getAllHotels() {
