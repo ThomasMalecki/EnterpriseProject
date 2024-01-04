@@ -29,7 +29,13 @@ public class BookingService {
     private String customerServiceBaseUrl;
 
     public boolean placeBooking(BookingRequest bookingRequest) {
-        if(customerExistsById(bookingRequest.getCustomerId())){
+        CustomerResponse[] customerResponse = webClient.get()
+                .uri(customerServiceBaseUrl + "/api/customer/by-id/{customerId}", uriBuilder -> uriBuilder.queryParam("customerId", bookingRequest.getCustomerId()).build())
+                .retrieve()
+                .bodyToMono(CustomerResponse[].class)
+                .block();
+
+        if(customerResponse == null){
             return false;
         }
 
@@ -47,14 +53,6 @@ public class BookingService {
             return false;
         }
 
-    }
-    public boolean customerExistsById(Long customerId) {
-        Boolean exists = webClient.get()
-                .uri( customerServiceBaseUrl + "/api/customer/by-id/" + customerId)
-                .retrieve()
-                .bodyToMono(Boolean.class)
-                .block();
-        return exists != null && exists;
     }
     public boolean deleteBookingByNumber(String bookingNbr) {
         try {
