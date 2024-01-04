@@ -50,7 +50,7 @@ public class BookingService {
     }
     public boolean customerExistsById(Long customerId) {
         Boolean exists = webClient.get()
-                .uri("http://" + customerServiceBaseUrl + "/api/customer/by-id/{customerId}", customerId)
+                .uri( customerServiceBaseUrl + "/api/customer/by-id/" + customerId)
                 .retrieve()
                 .bodyToMono(Boolean.class)
                 .block();
