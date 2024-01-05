@@ -66,12 +66,6 @@ public class BookingServiceApplicationTests {
 		Booking booking = new Booking(1L, bookingNbr, 1L,2L, 3);
 
 		when(bookingRepository.save(any(Booking.class))).thenReturn(booking);
-
-		when(webClient.get()).thenReturn(requestHeadersUriSpec);
-		when(requestHeadersUriSpec.uri(anyString(),  any(Function.class))).thenReturn(requestHeadersSpec);
-		when(requestHeadersSpec.retrieve()).thenReturn(responseSpec);
-		when(responseSpec.bodyToMono(CustomerResponse.class)).thenReturn(Mono.just(customerResponse));
-
 		// Act
 		boolean result = bookingService.placeBooking(bookingRequest);
 

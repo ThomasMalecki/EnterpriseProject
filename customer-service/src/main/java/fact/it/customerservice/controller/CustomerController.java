@@ -32,10 +32,4 @@ public class CustomerController {
         boolean result = customerService.updateCustomer(customerId, customerRequest);
         return result ? "Customer updated successfully" : "Customer update failed";
     }
-
-    @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public Optional<Customer> checkCustomerExistsById(@RequestParam Long customerId) {
-        return customerService.findById(customerId);
-    }
 }

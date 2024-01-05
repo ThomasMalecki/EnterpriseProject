@@ -29,16 +29,6 @@ public class BookingService {
 
     public boolean placeBooking(BookingRequest bookingRequest) {
 
-        CustomerResponse customerResponse = webClient.get()
-                .uri("http://" + customerServiceBaseUrl + "/api/customer",
-                        uriBuilder -> uriBuilder.queryParam("customerId", bookingRequest.getCustomerId()).build())
-                .retrieve()
-                .bodyToMono(CustomerResponse.class)
-                .block();
-
-        if(customerResponse == null){
-            return false;
-        }
         Booking booking = new Booking();
         booking.setBookingNbr(UUID.randomUUID().toString());
 

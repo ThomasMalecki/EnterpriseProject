@@ -75,8 +75,4 @@ public class CustomerService {
                 ))
                 .collect(Collectors.toList());
     }
-
-    public Optional<Customer> findById(Long customerId) {
-        return customerRepository.findById(customerId);
-    }
 }

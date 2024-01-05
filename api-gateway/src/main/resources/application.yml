@@ -74,10 +74,3 @@ spring:
             - Method=PUT
           filters:
             - SetPath=/api/customer/{customerId}
-        - id: customer-service-find-by-id
-          uri: http://${CUSTOMER_SERVICE_BASEURL:localhost:8082}
-          predicates:
-            - Path=/customers/{customerId}
-            - Method=GET
-          filters:
-            - SetPath=/api/customer/{customerId}
