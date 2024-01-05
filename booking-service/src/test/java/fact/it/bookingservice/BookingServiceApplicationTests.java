@@ -52,7 +52,7 @@ public class BookingServiceApplicationTests {
 		ReflectionTestUtils.setField(bookingService, "customerServiceBaseUrl", "http://localhost:8082");
 	}
 	
-	
+
 
 	@Test
 	public void deleteBookingByNumber_ExistingBooking_ReturnsTrue() throws Exception {

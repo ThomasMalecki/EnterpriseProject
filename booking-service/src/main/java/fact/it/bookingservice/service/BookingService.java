@@ -67,8 +67,8 @@ public class BookingService {
         return bookings.stream()
                 .map(booking -> new BookingResponse(
                         booking.getBookingNbr(),
-                        booking.getCustomerId(),
                         booking.getHotelId(),
+                        booking.getCustomerId(),
                         booking.getAmountOfNights()
                 ))
                 .collect(Collectors.toList());
