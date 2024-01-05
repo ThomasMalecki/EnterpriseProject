@@ -2,12 +2,14 @@ package fact.it.customerservice.controller;
 
 import fact.it.customerservice.dto.CustomerRequest;
 import fact.it.customerservice.dto.CustomerResponse;
+import fact.it.customerservice.model.Customer;
 import fact.it.customerservice.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/customer")
@@ -32,7 +34,7 @@ public class CustomerController {
     }
 
     @GetMapping("/by-id/{customerId}")
-    public Boolean checkCustomerExistsById(@PathVariable Long customerId) {
-        return customerService.findById(customerId).isPresent();
+    public Optional<Customer> checkCustomerExistsById(@PathVariable Long customerId) {
+        return customerService.findById(customerId);
     }
 }
