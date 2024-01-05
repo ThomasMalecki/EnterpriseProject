@@ -31,7 +31,7 @@ public class BookingService {
 
         CustomerResponse[] customerResponse = webClient.get()
                 .uri("http://" + customerServiceBaseUrl + "/api/customer/by-id/{customerId}",
-                        uriBuilder -> uriBuilder.queryParam("customerId", bookingRequest.getCustomerId()).build())
+                        uriBuilder -> uriBuilder.queryParam("customerId", 1L).build())
                 .retrieve()
                 .bodyToMono(CustomerResponse[].class)
                 .block();
