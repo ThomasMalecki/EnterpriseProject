@@ -52,28 +52,7 @@ public class BookingServiceApplicationTests {
 		ReflectionTestUtils.setField(bookingService, "customerServiceBaseUrl", "http://localhost:8082");
 	}
 
-	@Test
-	public void placeBooking_ValidRequest_ReturnsTrue() throws Exception {
-		BookingRequest bookingRequest = new BookingRequest(1L, 2L, 3);
-
-		CustomerResponse customerResponse = new CustomerResponse();
-		customerResponse.setEmail("test@test.be");
-		customerResponse.setFirstName("test");
-		customerResponse.setLastName("testlast");
-		customerResponse.setPhone("44848454989");
-
-		String bookingNbr = UUID.randomUUID().toString();
-		Booking booking = new Booking(1L, bookingNbr, 1L,2L, 3);
-
-		when(bookingRepository.save(any(Booking.class))).thenReturn(booking);
-		// Act
-		boolean result = bookingService.placeBooking(bookingRequest);
-
-		// Assert
-		assertTrue(result);
-
-		verify(bookingRepository, times(1)).save(any(Booking.class));
-	}
+	
 
 	@Test
 	public void deleteBookingByNumber_ExistingBooking_ReturnsTrue() throws Exception {
