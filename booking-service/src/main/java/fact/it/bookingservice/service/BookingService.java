@@ -27,7 +27,10 @@ public class BookingService {
     private String customerServiceBaseUrl;
 
     public boolean placeBooking(BookingRequest bookingRequest) {
-
+        if (bookingRequest.getCustomerId() == null) {
+            // Voer de nodige foutafhandeling uit, bijvoorbeeld logboekregistratie
+            return false;
+        }
         CustomerResponse[] customerResponse = webClient.get()
                 .uri("http://" + customerServiceBaseUrl + "/api/customer/by-id/{customerId}",
                         uriBuilder -> uriBuilder.queryParam("customerId", bookingRequest.getCustomerId()).build())
