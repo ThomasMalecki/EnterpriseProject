@@ -46,3 +46,5 @@ Wanneer u niet geauthenticeerd bent, kunt u alleen toegang krijgen tot de lijst 
 - **PUT:** `/api/customer/{customerId}`
 ## Schema
 ![alt text](https://github.com/ThomasMalecki/EnterpriseProject/blob/main/schema.png?raw=true)
+## Github Actions
+Ik maak gebruik van github actions, dit voert de unit tests, image push, build, ... uit. Deze controle gebeurd bij elke push.
