@@ -33,7 +33,7 @@ public class CustomerController {
         return result ? "Customer updated successfully" : "Customer update failed";
     }
 
-    @GetMapping("customerId")
+    @GetMapping("/find-by/customerId")
     public Optional<Customer> checkCustomerExistsById(@RequestParam Long customerId) {
         return customerService.findById(customerId);
     }
