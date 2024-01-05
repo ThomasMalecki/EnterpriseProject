@@ -5,6 +5,7 @@ import fact.it.bookingservice.repository.BookingRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -22,15 +23,14 @@ public class BookingService {
     private final BookingRepository bookingRepository;
     private final WebClient webClient;
 
-    @Value("${hotelservice.baseurl}")
-    private String hotelServiceBaseUrl;
-
     @Value("${customerservice.baseurl}")
     private String customerServiceBaseUrl;
 
     public boolean placeBooking(BookingRequest bookingRequest) {
+
         CustomerResponse[] customerResponse = webClient.get()
-                .uri(customerServiceBaseUrl + "/api/customer/by-id/{customerId}", uriBuilder -> uriBuilder.queryParam("customerId", bookingRequest.getCustomerId()).build())
+                .uri("http://" + customerServiceBaseUrl + "/api/customer/by-id/{customerId}",
+                        uriBuilder -> uriBuilder.queryParam("customerId", bookingRequest.getCustomerId()).build())
                 .retrieve()
                 .bodyToMono(CustomerResponse[].class)
                 .block();
@@ -49,7 +49,11 @@ public class BookingService {
         try {
             bookingRepository.save(booking);
             return true;
+        } catch (DataIntegrityViolationException e) {
+            // Specifieke behandeling voor duplicaat sleutel, bijv. boekingsnummer al in gebruik
+            return false;
         } catch (Exception e) {
+            // Algemene foutafhandeling
             return false;
         }
 
