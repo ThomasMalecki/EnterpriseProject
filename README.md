@@ -15,8 +15,9 @@ Wanneer u niet geauthenticeerd bent, kunt u alleen toegang krijgen tot de lijst 
 
 ### API Endpoints
 - **GET:** `localhost:8083/hotels`
+![alt text](https://github.com/ThomasMalecki/EnterpriseProject/blob/main/all-hotels.png?raw=true)
 - **POST:** `localhost:8083/hotels`
-
+![alt text](https://github.com/ThomasMalecki/EnterpriseProject/blob/main/hotel-post.png?raw=true)
 ### Service Endpoints
 - **GET:** `/api/hotel/all`
 - **POST:** `/api/hotel`
@@ -26,8 +27,11 @@ Wanneer u niet geauthenticeerd bent, kunt u alleen toegang krijgen tot de lijst 
 
 ### API Endpoints
 - **GET:** `localhost:8083/bookings`
+![alt text](https://github.com/ThomasMalecki/EnterpriseProject/blob/main/all-bookings.png?raw=true)
 - **POST:** `localhost:8083/bookings`
+![alt text](https://github.com/ThomasMalecki/EnterpriseProject/blob/main/booking-post.png?raw=true)
 - **DELETE:** `localhost:8083/bookings/{bookingNbr}`
+![alt text](https://github.com/ThomasMalecki/EnterpriseProject/blob/main/booking-delete.png?raw=true)
 
 ### Service Endpoints
 - **GET:** `/api/booking/all`
@@ -39,7 +43,9 @@ Wanneer u niet geauthenticeerd bent, kunt u alleen toegang krijgen tot de lijst 
 
 ### API Endpoints
 - **GET:** `localhost:8083/customers`
+![alt text](https://github.com/ThomasMalecki/EnterpriseProject/blob/main/all-customers.png?raw=true)
 - **PUT:** `localhost:8083/customers/{customerId}`
+![alt text](https://github.com/ThomasMalecki/EnterpriseProject/blob/main/customer-update.png?raw=true)
 
 ### Service Endpoints
 - **GET:** `/api/customer/all`
