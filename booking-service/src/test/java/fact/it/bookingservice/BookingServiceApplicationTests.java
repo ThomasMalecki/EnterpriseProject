@@ -70,7 +70,7 @@ public class BookingServiceApplicationTests {
 		when(webClient.get()).thenReturn(requestHeadersUriSpec);
 		when(requestHeadersUriSpec.uri(anyString(),  any(Function.class))).thenReturn(requestHeadersSpec);
 		when(requestHeadersSpec.retrieve()).thenReturn(responseSpec);
-		when(responseSpec.bodyToMono(CustomerResponse[].class)).thenReturn(Mono.just(new CustomerResponse[]{customerResponse}));
+		when(responseSpec.bodyToMono(CustomerResponse.class)).thenReturn(Mono.just(customerResponse));
 
 		// Act
 		boolean result = bookingService.placeBooking(bookingRequest);

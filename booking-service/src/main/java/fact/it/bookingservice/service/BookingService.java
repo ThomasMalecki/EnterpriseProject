@@ -29,11 +29,11 @@ public class BookingService {
 
     public boolean placeBooking(BookingRequest bookingRequest) {
 
-        CustomerResponse[] customerResponse = webClient.get()
+        CustomerResponse customerResponse = webClient.get()
                 .uri("http://" + customerServiceBaseUrl + "/api/customer",
                         uriBuilder -> uriBuilder.queryParam("customerId", bookingRequest.getCustomerId()).build())
                 .retrieve()
-                .bodyToMono(CustomerResponse[].class)
+                .bodyToMono(CustomerResponse.class)
                 .block();
 
         if(customerResponse == null){
