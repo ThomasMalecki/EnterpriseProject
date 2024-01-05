@@ -45,4 +45,4 @@ Wanneer u niet geauthenticeerd bent, kunt u alleen toegang krijgen tot de lijst 
 - **GET:** `/api/customer/all`
 - **PUT:** `/api/customer/{customerId}`
 ## Schema
-![alt text](https://github.com/[ThomasMalecki]/[EnterpriseProject]/blob/[main]/schema.jpg?raw=true)
+![alt text](https://github.com/ThomasMalecki/EnterpriseProject/blob/main/schema.png?raw=true)
