@@ -30,7 +30,7 @@ public class BookingService {
     public boolean placeBooking(BookingRequest bookingRequest) {
 
         CustomerResponse customerResponse = webClient.get()
-                .uri("http://" + customerServiceBaseUrl + "/api/customer/find-by",
+                .uri("http://" + customerServiceBaseUrl + "/api/customer",
                         uriBuilder -> uriBuilder.queryParam("customerId", bookingRequest.getCustomerId()).build())
                 .retrieve()
                 .bodyToMono(CustomerResponse.class)
