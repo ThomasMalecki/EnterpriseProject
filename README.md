@@ -27,10 +27,13 @@ Wanneer u niet geauthenticeerd bent, kunt u alleen toegang krijgen tot de lijst 
 
 ### API Endpoints
 - **GET:** `localhost:8083/bookings`
+
 ![alt text](https://github.com/ThomasMalecki/EnterpriseProject/blob/main/all-bookings.png?raw=true)
 - **POST:** `localhost:8083/bookings`
+
 ![alt text](https://github.com/ThomasMalecki/EnterpriseProject/blob/main/booking-post.png?raw=true)
 - **DELETE:** `localhost:8083/bookings/{bookingNbr}`
+
 ![alt text](https://github.com/ThomasMalecki/EnterpriseProject/blob/main/booking-delete.png?raw=true)
 
 ### Service Endpoints
