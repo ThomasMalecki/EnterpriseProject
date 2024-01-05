@@ -31,8 +31,7 @@ Wanneer u niet geauthenticeerd bent, kunt u alleen toegang krijgen tot de lijst 
 - **POST:** `localhost:8083/bookings`
 - ![alt text](https://github.com/ThomasMalecki/EnterpriseProject/blob/main/booking-post.png?raw=true)
 - **DELETE:** `localhost:8083/bookings/{bookingNbr}`
-
-![alt text](https://github.com/ThomasMalecki/EnterpriseProject/blob/main/booking-delete.png?raw=true)
+- ![alt text](https://github.com/ThomasMalecki/EnterpriseProject/blob/main/booking-delete.png?raw=true)
 
 ### Service Endpoints
 - **GET:** `/api/booking/all`
@@ -52,6 +51,6 @@ Wanneer u niet geauthenticeerd bent, kunt u alleen toegang krijgen tot de lijst 
 - **GET:** `/api/customer/all`
 - **PUT:** `/api/customer/{customerId}`
 ## Schema
-- ![alt text](https://github.com/ThomasMalecki/EnterpriseProject/blob/main/schema.png?raw=true)
+![alt text](https://github.com/ThomasMalecki/EnterpriseProject/blob/main/schema.png?raw=true)
 ## Github Actions
 Ik maak gebruik van github actions, dit voert de unit tests, image push, build, ... uit. Deze controle gebeurd bij elke push.
