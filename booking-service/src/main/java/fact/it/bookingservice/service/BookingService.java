@@ -21,18 +21,16 @@ import java.util.stream.Collectors;
 @Transactional
 public class BookingService {
     private final BookingRepository bookingRepository;
+
     private final WebClient webClient;
 
     @Value("${customerservice.baseurl}")
     private String customerServiceBaseUrl;
 
     public boolean placeBooking(BookingRequest bookingRequest) {
-        if (bookingRequest.getCustomerId() == null) {
-            // Voer de nodige foutafhandeling uit, bijvoorbeeld logboekregistratie
-            return false;
-        }
         CustomerResponse[] customerResponse = webClient.get()
-                .uri("http://" + customerServiceBaseUrl + "/api/customer/by-id/{customerId}", bookingRequest.getCustomerId())
+                .uri("http://" + customerServiceBaseUrl + "/api/customer/by-id/{customerId}",
+                        uriBuilder -> uriBuilder.queryParam("customerId", bookingRequest.getCustomerId()).build())
                 .retrieve()
                 .bodyToMono(CustomerResponse[].class)
                 .block();
