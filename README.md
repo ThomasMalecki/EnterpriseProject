@@ -26,7 +26,7 @@ Binnen de hotel service heb je de mogelijkheid om een overzicht op te vragen van
 - **POST:** `/api/hotel`
 
 ## Booking Service
-Binnen de booking service kun je eenvoudig een nieuwe boeking aanmaken. Elke boeking is voorzien van een uniek boekingsnummer en bevat relevante gegevens zoals het gekozen hotel, de betrokken klant en het aantal nachten van het verblijf. Mocht het nodig zijn, is er ook de mogelijkheid om geplaatste boekingen te verwijderen.
+Binnen de booking service kun je eenvoudig een nieuwe boeking aanmaken. Elke boeking is voorzien van een uniek boekingsnummer en bevat relevante gegevens zoals het gekozen hotel, de betrokken klant en het aantal nachten van het verblijf. Ook word er na gekeken of de klant bestaat. Mocht het nodig zijn, is er ook de mogelijkheid om geplaatste boekingen te verwijderen.
 
 **Port:** 8081
 
@@ -56,6 +56,7 @@ In deze service heb je de mogelijkheid om een lijst van alle klanten op te vrage
 
 ### Service Endpoints
 - **GET:** `/api/customer/all`
+- **GET:** `/api/customer/by-id`
 - **PUT:** `/api/customer/{customerId}`
 ## Schema
 ![alt text](https://github.com/ThomasMalecki/EnterpriseProject/blob/main/schema.png?raw=true)
