@@ -29,19 +29,13 @@ public class BookingService {
 
     public boolean placeBooking(BookingRequest bookingRequest) {
 
-
-
-        CustomerResponse[] customerResponse =WebClient.builder()
-                .baseUrl("http://" + customerServiceBaseUrl + "/api/customer/by-id/{customerId}")
-                .build()
-                .get()
-                .uri(uriBuilder -> uriBuilder
-                        .path("/booking")
-                        .queryParam("customerId", bookingRequest.getCustomerId())
-                        .build())
+        CustomerResponse[] customerResponse = webClient.get()
+                .uri("http://" + customerServiceBaseUrl + "/api/customer/by-id/{customerId}",
+                        uriBuilder -> uriBuilder.queryParam("customerId", bookingRequest.getCustomerId()).build())
                 .retrieve()
                 .bodyToMono(CustomerResponse[].class)
                 .block();
+
         if(customerResponse == null){
             return false;
         }
